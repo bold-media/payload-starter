@@ -18,25 +18,24 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "3.2.2",
-    "@payloadcms/email-nodemailer": "3.2.2",
-    "@payloadcms/live-preview-react": "3.2.2",
-    "@payloadcms/next": "3.2.2",
-    "@payloadcms/payload-cloud": "3.2.2",
-    "@payloadcms/plugin-form-builder": "3.2.2",
-    "@payloadcms/plugin-nested-docs": "3.2.2",
-    "@payloadcms/plugin-seo": "3.2.2",
-    "@payloadcms/richtext-lexical": "3.2.2",
-    "@payloadcms/translations": "3.2.2",
+    "@payloadcms/db-postgres": "3.5.0",
+    "@payloadcms/email-nodemailer": "3.5.0",
+    "@payloadcms/live-preview-react": "3.5.0",
+    "@payloadcms/next": "3.5.0",
+    "@payloadcms/plugin-form-builder": "3.5.0",
+    "@payloadcms/plugin-nested-docs": "3.5.0",
+    "@payloadcms/plugin-seo": "3.5.0",
+    "@payloadcms/richtext-lexical": "3.5.0",
+    "@payloadcms/translations": "3.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "lucide-react": "^0.460.0",
-    "next": "15.0.3",
-    "payload": "3.2.2",
-    "react": "19.0.0-rc-380f5d67-20241113",
-    "react-dom": "19.0.0-rc-380f5d67-20241113",
+    "next": "15.0.4",
+    "payload": "3.5.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "sharp": "0.32.6",
     "standard-slugify": "^4.0.0",
     "tailwind-merge": "^2.5.4",
@@ -48,8 +47,8 @@
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.5.4",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "15.0.0",
@@ -62,16 +61,6 @@
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }
