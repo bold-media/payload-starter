@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
-import { accessField } from '@/payload/access'
+import { access, accessField } from '@/payload/access'
 
 export const User: CollectionConfig = {
   slug: 'user',
@@ -22,6 +22,9 @@ export const User: CollectionConfig = {
     },
   },
   auth: true,
+  access: {
+    read: access({ query: (args) => ({ id: { equals: args.req?.user?.id } }) }),
+  },
   fields: [
     {
       name: 'roles',
@@ -31,15 +34,12 @@ export const User: CollectionConfig = {
       },
       type: 'select',
       hasMany: true,
-      defaultValue: 'user',
+      defaultValue: 'editor',
       required: true,
       hooks: {
         beforeValidate: [ensureFirstUserIsAdmin],
       },
-      access: {
-        read: accessField({ condition: (args) => args.id === args.req?.user?.id }),
-        update: accessField(),
-      },
+      access: {},
       options: [
         {
           label: {
