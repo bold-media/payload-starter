@@ -20,7 +20,7 @@ import { BannerBlock } from '@/payload/blocks/Banner/Banner.component'
 // import type {
 //   CallToActionBlock as CTABlockProps,
 //   MediaBlock as MediaBlockProps,
-// } from '@/payload-types'
+// } from '@payload-types'
 
 // export type NodeTypes =
 //   | DefaultNodeTypes
