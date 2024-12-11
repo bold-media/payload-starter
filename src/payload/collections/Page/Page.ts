@@ -140,6 +140,6 @@ export const Page: CollectionConfig = {
         },
       ],
     },
-    createBreadcrumbsField('page'),
+    createBreadcrumbsField('page', { admin: { hidden: true } }),
   ],
 }
