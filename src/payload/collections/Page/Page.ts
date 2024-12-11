@@ -45,11 +45,11 @@ export const Page: CollectionConfig = {
     maxPerDoc: 50,
   },
   access: {
-    read: access({ roles: {editor: true}, type: "published"}),
-    create: access({ roles: {editor: true }}),
-    update: access({ roles: {editor: true }}),
-    delete: access({ roles: {editor: true }}),
-    readVersions: access({ roles: {editor: true }})
+    read: access({ roles: { editor: true }, type: 'published' }),
+    create: access({ roles: { editor: true } }),
+    update: access({ roles: { editor: true } }),
+    delete: access({ roles: { editor: true } }),
+    readVersions: access({ roles: { editor: true } }),
   },
   fields: [
     slug(),
@@ -138,14 +138,8 @@ export const Page: CollectionConfig = {
             }),
           ],
         },
-        {
-          label: {
-            en: en.common.other,
-            ru: ru.common.other,
-          },
-          fields: [createBreadcrumbsField('page')],
-        },
       ],
     },
+    createBreadcrumbsField('page'),
   ],
 }
