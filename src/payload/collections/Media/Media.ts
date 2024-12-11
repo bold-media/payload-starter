@@ -12,6 +12,43 @@ export const Media: CollectionConfig = {
       ru: 'Медиа',
     },
   },
+  upload: {
+    adminThumbnail: "thumbnail",
+    focalPoint: true,
+    imageSizes: [
+      {
+        name: "thumbnail",
+        width: 300,
+      },
+      {
+        name: 'sq',
+        width: 500,
+        height: 500,
+      },
+      {
+        name: "sm",
+        width: 600
+      },
+      {
+        name: "md",
+        width: 900
+      },
+      {
+        name: "lg",
+        width: 1400
+      },
+      {
+        name: "xl",
+        width: 1920
+      },
+      {
+        name: 'og',
+        width: 1200,
+        height: 630,
+        crop: 'center'
+      }
+    ]
+  },
   access: {
     read: () => true,
   },
@@ -22,5 +59,4 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
 }
