@@ -1,3 +1,4 @@
+import { revalidateGlobal } from '@/payload/hooks/revalidateGlobal'
 import { MetaDescriptionField, MetaTitleField } from '@payloadcms/plugin-seo/fields'
 import { GlobalConfig } from 'payload'
 
@@ -12,6 +13,9 @@ export const Settings: GlobalConfig = {
       en: 'Admin',
       ru: 'Админ',
     },
+  },
+  hooks: {
+    afterChange: [revalidateGlobal]
   },
   fields: [
     {
