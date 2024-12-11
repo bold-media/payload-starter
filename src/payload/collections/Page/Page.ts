@@ -14,6 +14,7 @@ import {
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs'
 import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Banner } from '@/payload/blocks/Banner/Banner.config'
+import { access } from '@/payload/access'
 
 export const Page: CollectionConfig = {
   slug: 'page',
@@ -42,6 +43,13 @@ export const Page: CollectionConfig = {
       },
     },
     maxPerDoc: 50,
+  },
+  access: {
+    read: access({ roles: {editor: true}, type: "published"}),
+    create: access({ roles: {editor: true }}),
+    update: access({ roles: {editor: true }}),
+    delete: access({ roles: {editor: true }}),
+    readVersions: access({ roles: {editor: true }})
   },
   fields: [
     slug(),
