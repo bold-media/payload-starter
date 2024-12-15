@@ -1,14 +1,13 @@
 import { resolvePathname } from '@/utils/resolvePathname'
-import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
-import React, { cache } from 'react'
+import React from 'react'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import { RichText } from '@/modules/common/RichText'
 import { Metadata, ResolvingMetadata } from 'next'
 import { generateMeta } from '@/utils/generateMeta'
-import { cacheTag } from 'next/dist/server/use-cache/cache-tag'
 import { getPathSegments } from '@/utils/getPathSegments'
+import { getPageByPathname } from '@/modules/common/data'
 
 interface Props {
   params: Promise<{
@@ -19,7 +18,7 @@ interface Props {
 const Pages = async ({ params }: Props) => {
   const { segments } = await params
   const pathname = resolvePathname(segments)
-  const page = await queryPageByPathname(pathname)
+  const page = await getPageByPathname(pathname)
 
   if (!page || !page?.content) {
     notFound()
@@ -33,34 +32,6 @@ const Pages = async ({ params }: Props) => {
 }
 
 export default Pages
-
-const queryPageByPathname = cache(async (pathname: string) => {
-  'use cache'
-
-  try {
-    console.log(`queryPageByPathname: ${pathname}`)
-    const { isEnabled: draft } = await draftMode()
-    const payload = await getPayload({ config })
-
-    const { docs } = await payload.find({
-      collection: 'page',
-      draft,
-      limit: 1,
-      pagination: false,
-      overrideAccess: draft,
-      disableErrors: true,
-      where: {
-        pathname: {
-          equals: pathname,
-        },
-      },
-    })
-    cacheTag(docs?.[0].id)
-    return docs?.[0] || null
-  } catch (error) {
-    return null
-  }
-})
 
 export const generateStaticParams = async () => {
   try {
@@ -95,7 +66,7 @@ export const generateMetadata = async (
 ): Promise<Metadata> => {
   const { segments } = await params
   const pathname = resolvePathname(segments)
-  const page = await queryPageByPathname(pathname)
+  const page = await getPageByPathname(pathname)
 
   const fallback = await parentPromise
 
