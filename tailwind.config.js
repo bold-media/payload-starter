@@ -10,6 +10,9 @@ export default {
       lg: '74em',
       xl: '90em',
     },
+    container: {
+      center: true,
+    },
     extend: {
       borderRadius: {
         lg: 'var(--radius)',
