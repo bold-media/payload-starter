@@ -24,8 +24,6 @@ export const GET = async (
 
   const previewSecret = searchParams.get('previewSecret')
 
-  console.log(`payloadToken: ${token}`)
-
   if (previewSecret) {
     return new Response('You are not allowed to view this page', { status: 403 })
   } else {
