@@ -15,6 +15,7 @@ import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-ne
 import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Banner } from '@/payload/blocks/Banner/Banner.config'
 import { access } from '@/payload/access'
+import { generatePreviewPath } from '@/utils/generatePreviewPath'
 
 export const Page: CollectionConfig = {
   slug: 'page',
@@ -30,7 +31,19 @@ export const Page: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'publishedAt', 'updatedAt'],
+    defaultColumns: ['title', 'pathname', 'publishedAt', 'updatedAt'],
+    livePreview: {
+      url: ({ data }) =>
+        generatePreviewPath({
+          collection: 'page',
+          pathname: typeof data?.pathname === 'string' ? data.pathname : '',
+        }),
+    },
+    preview: (data) =>
+      generatePreviewPath({
+        collection: 'page',
+        pathname: typeof data?.pathname === 'string' ? data.pathname : '',
+      }),
   },
   defaultPopulate: {
     title: true,
