@@ -31,8 +31,6 @@ const Pages = async ({ params }: Props) => {
   )
 }
 
-export default Pages
-
 export const generateStaticParams = async () => {
   try {
     const payload = await getPayload({ config })
@@ -72,3 +70,5 @@ export const generateMetadata = async (
 
   return generateMeta({ meta: page?.meta, fallback, pathname })
 }
+
+export default Pages
