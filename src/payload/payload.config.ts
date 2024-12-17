@@ -13,6 +13,7 @@ import { messages } from './i18n'
 import { plugins } from './plugins'
 import { rootEditor } from './fields/lexical/rootEditor'
 import { globals } from './globals'
+import { migrations } from '@/migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -64,6 +65,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
     idType: 'uuid',
+    prodMigrations: migrations,
   }),
   sharp,
   plugins,
