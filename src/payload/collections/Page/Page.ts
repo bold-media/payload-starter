@@ -16,6 +16,7 @@ import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Banner } from '@/payload/blocks/Banner/Banner.config'
 import { access } from '@/payload/access'
 import { generatePreviewPath } from '@/utils/generatePreviewPath'
+import { revalidatePage, revalidatePageDelete } from './hooks/revalidatePage'
 
 export const Page: CollectionConfig = {
   slug: 'page',
@@ -63,6 +64,10 @@ export const Page: CollectionConfig = {
     update: access({ roles: { editor: true } }),
     delete: access({ roles: { editor: true } }),
     readVersions: access({ roles: { editor: true } }),
+  },
+  hooks: {
+    afterChange: [revalidatePage],
+    afterDelete: [revalidatePageDelete],
   },
   fields: [
     slug(),
