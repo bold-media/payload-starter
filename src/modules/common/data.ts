@@ -15,30 +15,45 @@ export const getSettings = cache(
   { tags: [`settings`] },
 )
 
-export const getPageByPathname = cache(
-  async (pathname: string) => {
-    try {
-      console.log(`queryPageByPathname: ${pathname}`)
-      const { isEnabled: draft } = await draftMode()
-      const payload = await getPayload({ config })
+// Helper function to get page data without caching
+const getPageData = async (pathname: string, draft: boolean) => {
+  const payload = await getPayload({ config })
 
-      const { docs } = await payload.find({
-        collection: 'page',
-        draft,
-        limit: 1,
-        pagination: false,
-        overrideAccess: draft,
-        disableErrors: true,
-        where: {
-          pathname: {
-            equals: pathname,
-          },
-        },
-      })
-      return docs?.[0] || null
-    } catch (error) {
-      return null
-    }
+  const { docs } = await payload.find({
+    collection: 'page',
+    draft,
+    limit: 1,
+    pagination: false,
+    overrideAccess: draft,
+    disableErrors: true,
+    where: {
+      pathname: {
+        equals: pathname,
+      },
+    },
+  })
+  return docs?.[0] || null
+}
+
+const getCachedPageData = cache(
+  async (pathname: string) => {
+    console.log(`Cache Miss at: ${pathname}`)
+    return getPageData(pathname, false)
   },
   { tags: (pathname) => [pathname] },
 )
+
+export const getPageByPathname = async (pathname: string) => {
+  try {
+    const { isEnabled: draft } = await draftMode()
+
+    if (draft) {
+      return getPageData(pathname, true)
+    }
+
+    return getCachedPageData(pathname)
+  } catch (error) {
+    console.error('Error fetching page:', error)
+    return null
+  }
+}
