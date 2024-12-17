@@ -6,6 +6,7 @@ const nextConfig = {
   // experimental: {
   //   ppr: 'incremental',
   // },
+  output: 'standalone',
 }
 
 export default withPayload(nextConfig)
