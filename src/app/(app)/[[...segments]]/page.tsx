@@ -68,7 +68,7 @@ export const generateMetadata = async (
 
   const fallback = await parentPromise
 
-  return generateMeta({ meta: page?.meta, fallback, pathname })
+  return await generateMeta({ meta: page?.meta, fallback, pathname })
 }
 
 export default Pages
