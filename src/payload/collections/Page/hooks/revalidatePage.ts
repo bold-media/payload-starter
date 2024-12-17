@@ -1,5 +1,5 @@
 import { Page } from '@payload-types'
-import { revalidateTag } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
 export const revalidatePage: CollectionAfterChangeHook<Page> = ({
@@ -12,6 +12,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
       payload.logger.info(`Revalidating page at path: ${doc.pathname}`)
 
       revalidateTag(doc.pathname)
+      revalidatePath(doc.pathname)
     }
 
     if (
@@ -20,6 +21,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
       previousDoc?.pathname
     ) {
       revalidateTag(previousDoc.pathname)
+      revalidatePath(doc.pathname)
     }
   }
 
@@ -32,6 +34,7 @@ export const revalidatePageDelete: CollectionAfterDeleteHook<Page> = ({
 }) => {
   if (!context.disableRevalidate && doc?.pathname) {
     revalidateTag(doc.pathname)
+    revalidatePath(doc.pathname)
   }
 
   return doc
