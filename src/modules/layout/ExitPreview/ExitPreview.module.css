@@ -1,0 +1,7 @@
+.previewButton {
+  display: none;
+}
+
+html:not([data-in-iframe]) .previewButton {
+  display: block;
+}
