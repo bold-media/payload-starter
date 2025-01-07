@@ -15,7 +15,8 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "analyze": "ANALYZE=true pnpm next build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -44,6 +45,8 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.1.3",
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
