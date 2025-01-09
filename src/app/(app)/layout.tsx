@@ -11,7 +11,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const { isEnabled: draft } = await draftMode()
   return (
     <html lang="ru">
-      <body className="relative">
+      <body className="relative bg-background">
         {draft && (
           <>
             <LivePreviewListener />

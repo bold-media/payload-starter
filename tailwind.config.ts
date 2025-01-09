@@ -1,5 +1,5 @@
+import { typographyConfig } from './src/styles/typography.config'
 import type { Config } from 'tailwindcss'
-import plugin from 'tailwindcss/plugin'
 
 const config = {
   darkMode: ['class'],
@@ -16,6 +16,7 @@ const config = {
       center: true,
     },
     extend: {
+      typography: typographyConfig,
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -65,7 +66,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config
 
 export default config

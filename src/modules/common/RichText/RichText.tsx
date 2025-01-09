@@ -1,41 +1,23 @@
 import { cn } from '@/utils/cn'
-import React from 'react'
+import { jsxConverters } from './jsxConverters'
+import { richTextVariants, type RichTextProps } from './variants'
+import { RichText as RichTextBase } from '@payloadcms/richtext-lexical/react'
+import { typographyVariants } from '@/styles/typography'
 
-import { serializeLexical } from './serialize'
-
-type Props = {
-  className?: string
-  content: Record<string, any>
-  enableGutter?: boolean
-  enableProse?: boolean
-}
-
-export const RichText: React.FC<Props> = ({
-  className,
-  content,
-  enableGutter = true,
-  enableProse = true,
-}) => {
-  if (!content) {
-    return null
-  }
+export const RichText = ({ data, container, prose = {}, className, ...rest }: RichTextProps) => {
+  if (!data) return
 
   return (
-    <div
+    <RichTextBase
+      converters={jsxConverters}
+      data={data}
       className={cn(
-        {
-          'container ': enableGutter,
-          'max-w-none': !enableGutter,
-          'mx-auto prose dark:prose-invert ': enableProse,
-        },
-        className,
+        richTextVariants({
+          container,
+        }),
+        prose !== false && typographyVariants(prose || {}),
       )}
-    >
-      {content &&
-        !Array.isArray(content) &&
-        typeof content === 'object' &&
-        'root' in content &&
-        serializeLexical({ nodes: content?.root?.children })}
-    </div>
+      {...rest}
+    />
   )
 }

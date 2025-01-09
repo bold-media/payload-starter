@@ -26,7 +26,7 @@ const Pages = async ({ params }: Props) => {
 
   return (
     <div>
-      <RichText content={page?.content} />
+      <RichText data={page?.content} />
     </div>
   )
 }
