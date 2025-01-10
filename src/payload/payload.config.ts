@@ -14,6 +14,7 @@ import { plugins } from './plugins'
 import { rootEditor } from './fields/lexical/rootEditor'
 import { globals } from './globals'
 import { migrations } from '@/migrations'
+import { disableEnums } from './overrides/disableEnums'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,6 +67,7 @@ export default buildConfig({
     },
     idType: 'uuid',
     prodMigrations: migrations,
+    beforeSchemaInit: [disableEnums],
   }),
   sharp,
   plugins,
