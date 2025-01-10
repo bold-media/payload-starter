@@ -20,7 +20,7 @@ const Pages = async ({ params }: Props) => {
   const pathname = resolvePathname(segments)
   const page = await getPageByPathname(pathname)
 
-  if (!page || !page?.content) {
+  if (!page) {
     notFound()
   }
 
